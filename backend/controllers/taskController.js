@@ -1,7 +1,7 @@
-import Task from '../models/taskModel.js';
+import Task from '../models/Task.js';
 
 
-exports.getTasks = async (req, res) => {
+export const getTasks = async (req, res) => {
     try{
         const tasks = await Task.find({user: req.user._id});
         res.status(200).json({tasks, status: true, msg: 'Tasks fetched successfully'});
@@ -11,7 +11,7 @@ exports.getTasks = async (req, res) => {
     }
 }
 
-exports.getTask = async(req, res) =>{
+export const getTask = async(req, res) =>{
     try{
         if(!req.params.id){
             return res.status(400).json({msg: 'Task id is required'});
@@ -27,7 +27,7 @@ exports.getTask = async(req, res) =>{
     }
 }
 
-exports.postTask = async(req, res) =>{
+export const postTask = async(req, res) =>{
     try{
         const {description} = req.body;
         if(!description){
@@ -42,7 +42,7 @@ exports.postTask = async(req, res) =>{
     }
 }
     
-exports.putTask = async(req, res) =>{
+export const putTask = async(req, res) =>{
     try{
         const {description, completed} = req.body;
             if(!req.params.id){
@@ -60,7 +60,7 @@ exports.putTask = async(req, res) =>{
     }
 }
 
-exports.deleteTask = async(req, res) =>{
+export const deleteTask = async(req, res) =>{
     try{
         if(!req.params.id){
             return res.status(400).json({msg: 'Task id is required'});

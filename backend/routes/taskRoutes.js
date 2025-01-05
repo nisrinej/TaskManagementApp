@@ -1,13 +1,13 @@
-import express, {router} from 'express';
-import {getTasks, postTask, putTask, deleteTask} from '../controllers/taskController.js';
+import express from 'express';
+import {getTasks, getTask, postTask, putTask, deleteTask} from '../controllers/taskController.js';
+import {verifyAccessToken} from '../middlewares/index.js';
+const Taskrouter = express.Router();
 
-const router = express.Router();
+Taskrouter.route('/').get(verifyAccessToken,getTasks);
+Taskrouter.route('/').post(verifyAccessToken,postTask);
+Taskrouter.route('/:id').put(verifyAccessToken,putTask);
+Taskrouter.route('/:id').get(verifyAccessToken,getTask);
+Taskrouter.route('/:id').delete(verifyAccessToken,deleteTask);
 
-router.route('/').get(getTasks);
-router.route('/').post(postTask);
-router.route('/:id').put(putTask);
-router.route('/:id').get(getTask);
-router.route('/:id').delete(deleteTask);
-
-export default router;
+export default Taskrouter;
 
