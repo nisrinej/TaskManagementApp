@@ -1,5 +1,5 @@
 import React, {useEffect} from "react";
-import SignupForm from "../components/signupForm";
+import SignupForm from "../components/SignupForm";
 
 const SignUp = () => {
     useEffect(() => {

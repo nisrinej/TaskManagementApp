@@ -1,7 +1,7 @@
-import api from "../api";
+import api from "../../api";
 import { LOGIN_FAILURE, LOGIN_SUCCESS, LOGIN_REQUEST, LOGOUT, SAVE_PROFILE } from "./actionTypes";
 
-export const posyLogin = (email, password) => async (dispatch) => {
+export const postLogin = (email, password) => async (dispatch) => {
     dispatch({ type: LOGIN_REQUEST });
     try {
         const response = await api.post('/users/login', { email, password });
@@ -11,7 +11,7 @@ export const posyLogin = (email, password) => async (dispatch) => {
     }
 }
 
-export const SAVE_PROFILE = (token) => async (dispatch) => {
+export const saveProfile = (token) => async (dispatch) => {
     try{
         const response = await api.get('/users/profile', {
             headers: {
