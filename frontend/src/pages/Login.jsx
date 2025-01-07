@@ -1,6 +1,7 @@
 import React, {useEffect} from "react";
 import { useLocation } from "react-router-dom";
-import loginForm from "../components/loginForm";
+import LoginForm from "../components/loginForm";
+import MainLayout from '../layouts/MainLayout'
 
 const Login = () => {
     const { state } = useLocation();
@@ -12,8 +13,11 @@ const Login = () => {
 
     return(
         <>
-            <h1>Login</h1>
-            <loginForm redirectUrl={redirectUrl} />
+        <MainLayout>
+        <h1>Login</h1>
+        <LoginForm redirectUrl={redirectUrl} />
+        </MainLayout>
+           
         </>
     )
 }
