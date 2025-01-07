@@ -18,17 +18,19 @@ const SignupForm = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        fetchData('/api/users/signup', {
+        const config = {url: "/api/users/register", method: "POST", body: JSON.stringify(formData), headers: {"Content-Type": "application/json"}};
+        fetchData('/api/users/register', {
             method: 'POST',
             body: JSON.stringify(formData),
             headers: {
                 'Content-Type': 'application/json'
             }
         });
+        fetchData(config).then(() => navigate('/login'));
     };
 
-    const config = {url: "/api/users/register", method: "POST", body: JSON.stringify(formData), headers: {"Content-Type": "application/json"}};
-    fetchData(config).then(() => navigate('/login'));
+
+    
 
     return (
         <div>

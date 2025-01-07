@@ -5,8 +5,9 @@ import Login from "./pages/Login";
 import SignUp from "./pages/SignUp";
 import { saveProfile } from "./redux/actions/authActions";
 function App() {
-  const authState = useSelector((state) => state.authReducer);
+  const authState = useSelector((state) => state.isLogedIn);
   const dispatch = useDispatch();
+ 
 
   useEffect(() => {
     const token = localStorage.getItem("token");

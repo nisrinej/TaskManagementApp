@@ -13,7 +13,11 @@ const authReducer = (state = initialState, action) => {
         case LOGIN_REQUEST:
             return {
                 ...state,
-                loading: true
+                loading: true,
+                user: {},
+                isLogedIn: false,
+                token:"",
+                error: ""
             }
         case LOGIN_SUCCESS:
             return {
@@ -21,25 +25,35 @@ const authReducer = (state = initialState, action) => {
                 token: action.payload.token,
                 user: action.payload.user,
                 isLogedIn: true,
-                loading: false
+                loading: false,
+                error: ""
             }
         case LOGIN_FAILURE:
             return {
                 ...state,
-                error: action.payload,
+                user: {},
+                isLogedIn: false,
+                token: "",
+                error: action.payload.message,
                 loading: false
             }
         case SAVE_PROFILE:
             return {
                 ...state,
-                user: action.payload.user
+                loading: false,
+                isLogedIn: true,
+                user: action.payload.user,
+                token: action.payload.token,
+                error: ""
             }
         case LOGOUT:
             return {
                 ...state,
                 token: null,
                 user: {},
-                isLogedIn: false
+                isLogedIn: false,
+                isLogedIn: false,
+                error: ""
             }
         default:
             return state;

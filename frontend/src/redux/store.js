@@ -5,7 +5,8 @@ import authReducer from './reducers/authReducer';
 
 const store = configureStore({
     reducer: authReducer,
-     middleware: [thunk]});
+     middleware: (getDefaulteMiddleware) => getDefaulteMiddleware().concat(thunk)
+});
 //const store = createStore(authReducer, applyMiddleware(thunk));
 
 export default store;
