@@ -6,7 +6,7 @@ const initialState = {
     isLogedIn: false,
     error: null,
     loading: false
-}
+};
 
 const authReducer = (state = initialState, action) => {
     switch (action.type) {
@@ -51,7 +51,6 @@ const authReducer = (state = initialState, action) => {
                 ...state,
                 token: null,
                 user: {},
-                isLogedIn: false,
                 isLogedIn: false,
                 error: ""
             }
