@@ -26,7 +26,7 @@ if (process.env.NODE_ENV === "production") {
   app.get("*", (req, res) => res.sendFile(path.resolve(__dirname, "../frontend/build/index.html")));
 }
 
-const port = process.env.PORT || 5000;
+const port = process.env.PORT || 3005;
 app.listen(port, () => {
   console.log(`Backend is running on port ${port}`);
 });
