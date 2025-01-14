@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import useFetch from '../hooks/useFetch';
 import Loader from './utils/Loader';
-
+import Tooltip from './utils/Tooltip';
 
 const Tasks = () => {
 
@@ -13,7 +13,7 @@ const Tasks = () => {
 
   const fetchTasks = useCallback(() => {
     const config = { url: "/tasks", method: "get", headers: { Authorization: authState.token } };
-    fetchData(config).then(data => setTasks(data.tasks));
+    fetchData(config, { showSuccessToast: false }).then(data => setTasks(data.tasks));
   }, [authState.token, fetchData]);
 
   useEffect(() => {
@@ -51,18 +51,17 @@ const Tasks = () => {
 
                     <span className='font-medium'>Task #{index + 1}</span>
 
-                    <label htmlFor="editTask">Edit this task</label>
+                    <Tooltip text={"Edit this task"} position={"top"}>
                       <Link to={`/tasks/${task._id}`} className='ml-auto mr-2 text-green-600 cursor-pointer'>
                         <i className="fa-solid fa-pen"></i>
                       </Link>
-                    
+                    </Tooltip>
 
-                    
-                    <label htmlFor="Delete this task">Edit this task</label>
+                    <Tooltip text={"Delete this task"} position={"top"}>
                       <span className='text-red-500 cursor-pointer' onClick={() => handleDelete(task._id)}>
                         <i className="fa-solid fa-trash"></i>
                       </span>
-                    
+                    </Tooltip>
 
                   </div>
                   <div className='whitespace-pre'>{task.description}</div>

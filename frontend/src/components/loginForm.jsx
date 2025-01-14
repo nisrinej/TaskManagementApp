@@ -1,9 +1,11 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom';
+import validateManyFields from '../validations';
+import Input from './utils/Input';
 import { useDispatch, useSelector } from "react-redux";
-import { postLogin } from '../redux/actions/authActions';
-import Loader from './Loader'
-import Input from './Input'
+import { postLoginData } from '../redux/actions/authActions';
+import Loader from './utils/Loader';
+import { useEffect } from 'react';
 
 const LoginForm = ({ redirectUrl }) => {
 
@@ -35,8 +37,13 @@ const LoginForm = ({ redirectUrl }) => {
 
   const handleSubmit = e => {
     e.preventDefault();
+    const errors = validateManyFields("login", formData);
     setFormErrors({});
-    dispatch(postLogin(formData.email, formData.password));
+    if (errors.length > 0) {
+      setFormErrors(errors.reduce((total, ob) => ({ ...total, [ob.field]: ob.err }), {}));
+      return;
+    }
+    dispatch(postLoginData(formData.email, formData.password));
   }
 
 

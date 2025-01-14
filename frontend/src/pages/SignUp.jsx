@@ -1,16 +1,19 @@
-import React, {useEffect} from "react";
-import SignupForm from "../components/SignupForm";
+import React, { useEffect } from 'react'
+import SignupForm from '../components/SignupForm';
+import MainLayout from '../layouts/MainLayout'
 
-const SignUp = () => {
-    useEffect(() => {
-        document.title = "Sign Up";
-    }, []);
+const Signup = () => {
 
-    return(
-        <>
-            <h1>Sign Up</h1>
-            <SignupForm />
-        </>
-    )
+  useEffect(() => {
+    document.title = "Signup";
+  }, []);
+  return (
+    <>
+      <MainLayout>
+        <SignupForm />
+      </MainLayout>
+    </>
+  )
 }
-export default SignUp;
+
+export default Signup

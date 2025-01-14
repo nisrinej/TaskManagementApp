@@ -1,25 +1,23 @@
-import React, {useEffect} from "react";
-import { useLocation } from "react-router-dom";
-import LoginForm from "../components/loginForm";
+import React, { useEffect } from 'react'
+import { useLocation } from 'react-router-dom';
+import LoginForm from '../components/LoginForm';
 import MainLayout from '../layouts/MainLayout'
 
 const Login = () => {
-    const { state } = useLocation();
-    const redirectUrl = state?.from || '/';
+  const { state } = useLocation();
+  const redirectUrl = state?.redirectUrl || null;
 
-    useEffect(() => {
-        document.title = "Login";
-    }, []);
+  useEffect(() => {
+    document.title = "Login";
+  }, []);
 
-    return(
-        <>
-        <MainLayout>
-        <h1>Login</h1>
+  return (
+    <>
+      <MainLayout>
         <LoginForm redirectUrl={redirectUrl} />
-        </MainLayout>
-           
-        </>
-    )
+      </MainLayout>
+    </>
+  )
 }
 
-export default Login;
+export default Login
